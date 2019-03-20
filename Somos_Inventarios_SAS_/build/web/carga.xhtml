@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html       xmlns="http://www.w3.org/1999/xhtml"
+            xmlns:h="http://xmlns.jcp.org/jsf/html"
+            xmlns:p="http://primefaces.org/ui"
+            xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body background="AmazonWall.jpg"/>
+
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+            <f:event type="preRenderView" listener="#{permisosController.verificarSesionPrincipales()}"></f:event>
+        <h3 style="margin-top:0">Importar</h3>
+            <p:accordionPanel>
+                    <p:tab title="Equipos">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage url="/pc.png" width="100" />
+                            <h:form enctype="multipart/form-data">
+                                <center>
+                                    <h:inputFile value="#{cargarArchivo.file}"/>
+                                    <br/><br/>
+                                    <p:commandButton value="Importar Equipos" actionListener="#{cargarArchivo.cargarEquipo()}" ajax="false"/>
+                                </center>
+                            </h:form> 
+                        </h:panelGrid>
+                    </p:tab>
+                 <p:tab title="Productos">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage url="/mercado.png" width="100"/>
+                                <h:form enctype="multipart/form-data">
+                                    <center>
+                                        <h:inputFile value="#{cargarArchivo.file}"/>
+                                        <br/><br/>
+                                        <p:commandButton value="Importar Productos" actionListener="#{cargarArchivo.cargarProducto()}" ajax="false"/>
+                                    </center>
+                                </h:form> 
+                        </h:panelGrid>
+                </p:tab>
+                <p:tab title="Usuarios">
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <p:graphicImage url="/usuarios.png" width="100"/>
+                            <h:form enctype="multipart/form-data">
+                                <center>
+                                    <h:inputFile value="#{cargarArchivo.file}"/>
+                                    <br/><br/>
+                                    <p:commandButton value="Importar Usuarios" actionListener="#{cargarArchivo.cargarUsuario()}" ajax="false"/>
+                                </center>
+                            </h:form> 
+                    </h:panelGrid>
+                </p:tab>
+
+            </p:accordionPanel>
+        
+        
+
+        <br/>
+        <br/>
+    </h:body>
+</html>

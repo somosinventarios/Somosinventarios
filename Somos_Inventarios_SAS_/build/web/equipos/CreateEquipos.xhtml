@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./resources/css/default.css"/>
+        <h:outputStylesheet name="./resources/css/cssLayout.css"/>
+        <f:event type="preRenderView" listener="#{permisosController.verificarSesion()}"></f:event>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <p:layout style="min-width:400px;min-height:290px;">
+    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+         <h:form> 
+             
+         <p:menu>
+          <p:submenu label="Menú">
+          </p:submenu>
+             <p:menuitem value="Atras" url="http://localhost:8080/Somos_Inventarios_SAS_/faces/equipos/List.xhtml" icon="pi pi-home"/>
+           </p:menu>
+         </h:form>
+    </p:layoutUnit>
+ 
+    <p:layoutUnit position="center">
+          <h:form id="EquiposCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="#{bundle.CreateEquiposLabel_referencia}" for="referencia" />
+                        <p:inputText id="referencia" value="#{equiposController.selected.referencia}" title="#{bundle.CreateEquiposTitle_referencia}" required="true" requiredMessage="#{bundle.CreateEquiposRequiredMessage_referencia}"/>
+                        <p:outputLabel value="#{bundle.CreateEquiposLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{equiposController.selected.nombre}" title="#{bundle.CreateEquiposTitle_nombre}" required="true" requiredMessage="#{bundle.CreateEquiposRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateEquiposLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{equiposController.selected.precio}" title="#{bundle.CreateEquiposTitle_precio}" required="true" requiredMessage="#{bundle.CreateEquiposRequiredMessage_precio}"/>
+                        <p:outputLabel value="Fecha de Ingreso" for="fechaIngreso" />
+                        <p:calendar id="fechaIngreso" pattern="MM/dd/yyyy" value="#{equiposController.selected.fechaIngreso}" title="#{bundle.EditEquiposTitle_fechaIngreso}" required="true" requiredMessage="#{bundle.EditEquiposRequiredMessage_fechaIngreso}" showOn="button"/>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton action ="#{equiposController.create()}" value="Guardar" />
+                    
+                    <p:commandButton value="Cancelar"/>
+                </h:panelGroup>
+            </h:form>
+    </p:layoutUnit>
+            </p:layout>
+    </h:body>
+    
+
+</html>

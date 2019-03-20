@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="EquiposCreateDlg" widgetVar="EquiposCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Agregar nuevo equipo">
+            <h:form id="EquiposCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{equiposController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEquiposLabel_referencia}" for="referencia" />
+                        <p:inputText id="referencia" value="#{equiposController.selected.referencia}" title="#{bundle.CreateEquiposTitle_referencia}" required="true" requiredMessage="#{bundle.CreateEquiposRequiredMessage_referencia}"/>
+                        <p:outputLabel value="#{bundle.CreateEquiposLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{equiposController.selected.nombre}" title="#{bundle.CreateEquiposTitle_nombre}" required="true" requiredMessage="#{bundle.CreateEquiposRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateEquiposLabel_precio}" for="precio" />
+                        <p:inputText id="precio" value="#{equiposController.selected.precio}" title="#{bundle.CreateEquiposTitle_precio}" required="true" requiredMessage="#{bundle.CreateEquiposRequiredMessage_precio}"/>
+                        <p:outputLabel value="Fecha de Ingreso" for="fechaIngreso" />
+                        <p:calendar id="fechaIngreso" pattern="MM/dd/yyyy" value="#{equiposController.selected.fechaIngreso}" title="#{bundle.EditEquiposTitle_fechaIngreso}" required="true" requiredMessage="#{bundle.EditEquiposRequiredMessage_fechaIngreso}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{equiposController.create}" value="Guardar" update="display,:EquiposListForm:datalist,:growl" oncomplete="handleSubmit(args,'EquiposCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="EquiposCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>
